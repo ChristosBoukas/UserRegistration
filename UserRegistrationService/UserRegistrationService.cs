@@ -1,4 +1,5 @@
-﻿using UserRegistrationService;
+﻿using System.Text.RegularExpressions;
+using UserRegistrationService;
 
 namespace userregistrationservice;
 
@@ -11,18 +12,25 @@ public class UserRegistrationService
 
     }
 
-    public bool RegisterUserName(string userName)
+    public bool RegisterUserName(string inputValue)
     {
-        try
-        {   
-            return true;
-        }
-        catch (Exception ex)
+        // Define a regular expression pattern for alphanumeric characters only
+        string pattern = "^[a-zA-Z0-9]+$";
+
+        // Check if the inputValue length is within the valid range
+        if (inputValue.Length < 5 || inputValue.Length > 20)
         {
-
+            throw new ArgumentException("Invalid number of characters");
         }
 
-        return false;
+        // Check if the inputValue contains only alphanumeric characters
+        if (!Regex.IsMatch(inputValue, pattern))
+        {
+            throw new ArgumentException("Contains special characters");
+        }
+
+        // Username is valid
+        return true;
     }
 
     public void RegisterPassword(string password)

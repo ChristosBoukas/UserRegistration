@@ -8,13 +8,15 @@ public class UnitTest1
     {
         // Arrange
         UserRegistrationService service = new UserRegistrationService();
-        string inputValue = "inputValue";
+        string numericValuesExceedingLimit = "OnlyAlphaNumericChars0123456789";
+        string numericValuesConceedingLimit = "cl12";
+        string specialCharacters = "SpecialCharacters#!£€{";
+        string numericCharactersWithinRange = "Character12345";
 
-        // Act
-        bool registerSuccesfull = service.RegisterUserName(inputValue);
-
-        // Assert
-        Assert.IsTrue(registerSuccesfull);
-
+        // Act and Assert
+        Assert.ThrowsException<ArgumentException>(() => service.RegisterUserName(numericValuesExceedingLimit), "Invalid number of characters");
+        Assert.ThrowsException<ArgumentException>(() => service.RegisterUserName(numericValuesConceedingLimit), "Invalid number of characters");
+        Assert.ThrowsException<ArgumentException>(() => service.RegisterUserName(specialCharacters), "Contains special characters");
+        Assert.IsTrue(service.RegisterUserName(numericCharactersWithinRange));
     }
 }
