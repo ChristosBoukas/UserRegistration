@@ -4,7 +4,17 @@ namespace userregistrationservice.tests;
 public class UnitTest1
 {
     [TestMethod]
-    public void TestMethod1()
+    public void RegisterName()
     {
+        // Arrange
+        UserRegistrationService service = new UserRegistrationService();
+        string inputValue = "inputValue";
+
+        // Act
+        bool registerSuccesfull = service.RegisterUserName(inputValue);
+
+        // Assert
+        Assert.IsTrue(registerSuccesfull);
+
     }
 }
