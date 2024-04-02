@@ -46,10 +46,10 @@ public class PasswordTests
 
         // Act and Assert
 
-        // Assert when password is within range
+        // Assert method returns try when password is within range
         Assert.IsTrue(service.ValidatePassword(withinRange));
 
-        // Assert when password is out of range
+        // Assert exception is thrown when out of range
         Assert.ThrowsException<ArgumentException>(() => service.ValidatePassword(outOfRange), "Invalid number of characters");
     }
 }
