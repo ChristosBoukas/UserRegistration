@@ -7,24 +7,26 @@ public class UserRegistrationService
 {
     public List<User> Users { get; set; } = [];
 
-    public void CreateUser(string userName, string password, string email)
+    public string CreateUser(string username, string password, string email)
     {
-        ValidateUserName(userName);
+        ValidateUsername(username);
+        ValidateUniqueUsername(username);
         ValidatePassword(password);
         ValidateEmail(email);
 
         // If all validations pass, create and add the user
         User user = new User
         {
-            UserName = userName,
+            Username = username,
             Password = password,
             Email = email
         };
 
         Users.Add(user);
+        return $"User {username} added successfully";
     }
 
-    public bool ValidateUserName(string inputValue)
+    public bool ValidateUsername(string inputValue)
     {
         // Define a regular expression pattern for alphanumeric characters only
         string pattern = "^[a-zA-Z0-9]+$";
@@ -48,6 +50,16 @@ public class UserRegistrationService
         }
 
         // Username is valid
+        return true;
+    }
+
+    public bool ValidateUniqueUsername(string username)
+    {
+        User? uniqueUser = Users.FirstOrDefault(u => u.Username.Equals(username, StringComparison.OrdinalIgnoreCase));
+        if (uniqueUser is not null)
+        { 
+            throw new ArgumentException("Username is not unique.");
+        }
         return true;
     }
 
