@@ -14,14 +14,14 @@ public class CreateUserTests
         UserRegistrationService service = new UserRegistrationService();
 
         // Act
-        string confirmationMessage = service.CreateUser("ValidUsername", "ValidPass", "Valid@gmail.com");
+        string confirmationMessage = service.CreateUser("ValidUsername", "ValidPass!", "Valid@gmail.com");
 
         // Assert that a user has been added to the service.Users list
         Assert.AreEqual(1, service.Users.Count);
 
         // Assert that correct information has been stored to the users list
         Assert.AreEqual("ValidUsername", service.Users[0].Username);
-        Assert.AreEqual("ValidPass", service.Users[0].Password);
+        Assert.AreEqual("ValidPass!", service.Users[0].Password);
         Assert.AreEqual("Valid@gmail.com", service.Users[0].Email);
 
         // Assert that confirmation message is received
@@ -33,7 +33,7 @@ public class CreateUserTests
     {
         // Arrange
         UserRegistrationService service = new UserRegistrationService();
-        service.CreateUser("Username", "OGPassword", "OGEmail@gmail.com");
+        service.CreateUser("Username", "OGPassword!", "OGEmail@gmail.com");
 
         // Store the original user details
         string originalUsername = service.Users[0].Username;
@@ -41,7 +41,7 @@ public class CreateUserTests
         string originalEmail = service.Users[0].Email;
 
         // Act create new non-unique user and Assert that exception is thrown when username is not unique
-        Assert.ThrowsException<ArgumentException>(() => service.CreateUser("Username", "NewPassword", "NewEmail@gmail.com"), "Username is not unique.");
+        Assert.ThrowsException<ArgumentException>(() => service.CreateUser("Username", "NewPassword!", "NewEmail@gmail.com"), "Username is not unique.");
 
         // Assert that new user has not been added to the service.Users list
         Assert.AreEqual(1, service.Users.Count);

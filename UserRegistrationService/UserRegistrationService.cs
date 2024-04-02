@@ -63,8 +63,38 @@ public class UserRegistrationService
         return true;
     }
 
-    public bool ValidatePassword(string password)
+    public bool ValidatePassword(string inputValue)
     {
+        // Define a regular expression pattern for alphanumeric characters
+        string alphanumericPattern = "^[a-zA-Z0-9]+$";
+        // Define a regular expression pattern for special characters
+        string specialCharacterPattern = "[^a-zA-Z0-9]";
+
+        // Check if the inputValue length is within the valid range
+        if (inputValue is null)
+        {
+            throw new ArgumentException("No input value");
+        }
+
+        // Check if the inputValue length is within the valid range
+        if (inputValue.Length < 8 || inputValue.Length > 20)
+        {
+            throw new ArgumentException("Invalid number of characters");
+        }
+
+        // Check if the inputValue contains at least one special character
+        if (!Regex.IsMatch(inputValue, specialCharacterPattern))
+        {
+            throw new ArgumentException("Password must contain at least one special character");
+        }
+
+        // Check if the inputValue contains only alphanumeric characters
+        if (Regex.IsMatch(inputValue, alphanumericPattern))
+        {
+            throw new ArgumentException("Password must contain at least one special character");
+        }
+
+        // Password is valid
         return true;
     }
 

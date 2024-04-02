@@ -35,20 +35,24 @@ public class UsernameTests
     }
 
     [DataTestMethod]
-    [DataRow("12345")] // Min limit of 5 characters
-    [DataRow("InRa3")]
-    [DataRow("12345678912345678901")] // Max limit of 20 characters
-    [DataRow("Thisis20Charactersss")]
-    public void ValidateInputForUsernameRegistration_EdgeTests_ShouldReturnTrue(string username)
+    [DataRow("12345", "1234")] // string of 5 and 4 characters
+    [DataRow("InRa3", "Hej4")] // string of 5 and 4 characters
+    [DataRow("12345678912345678901", "123456789123456789012")] // string of 20 and 21 characters
+    [DataRow("Thisis20Charactersss", "Thisis21Characterssss")] // string of 20 and 21 characters
+    public void ValidateInputForUsernameRegistration_EdgeTests_ShouldReturnTrue(string usernameInRange, string usernameOutOfRange)
     {
         // Arrange variations of strings
         UserRegistrationService service = new UserRegistrationService();
-        string numericCharactersWithinRange = $"{username}";
 
         // Act and Assert
 
-        // Checks if method returns true if validation succeeds
-        Assert.IsTrue(service.ValidateUsername(numericCharactersWithinRange));
+        // Assert if method returns true on validation success (characters of 5 - 20 range)
+        Assert.IsTrue(service.ValidateUsername(usernameInRange));
+
+        // Assert when password is out of range (characters of 5 - 20 range)
+        Assert.ThrowsException<ArgumentException>(() => service.ValidatePassword(usernameOutOfRange), "Invalid number of characters");
+
+
 
     }
 
