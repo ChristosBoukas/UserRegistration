@@ -3,17 +3,19 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UserRegistrationService", "UserRegistrationService\UserRegistrationService.csproj", "{643A9245-D7B7-4D81-B659-C530FFCFBC17}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UserRegistrationService", "UserRegistrationService\UserRegistrationService.csproj", "{643A9245-D7B7-4D81-B659-C530FFCFBC17}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UserRegistrationService.Tests", "UserRegistrationService.Tests\UserRegistrationService.Tests.csproj", "{607E92E8-5831-481D-BC9C-255455226E5C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UserRegistrationService.Tests", "UserRegistrationService.Tests\UserRegistrationService.Tests.csproj", "{607E92E8-5831-481D-BC9C-255455226E5C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{8A66471D-4AD5-402C-BCC1-36DFB850B3AC}"
+	ProjectSection(SolutionItems) = preProject
+		ReflectionReport.txt = ReflectionReport.txt
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
-	EndGlobalSection
-	GlobalSection(SolutionProperties) = preSolution
-		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{643A9245-D7B7-4D81-B659-C530FFCFBC17}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -24,5 +26,11 @@ Global
 		{607E92E8-5831-481D-BC9C-255455226E5C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{607E92E8-5831-481D-BC9C-255455226E5C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{607E92E8-5831-481D-BC9C-255455226E5C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {3E836FAF-C5C3-4B7C-88F5-97FDF7B52BB6}
 	EndGlobalSection
 EndGlobal

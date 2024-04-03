@@ -1,0 +1,22 @@
+• Challenges faced and how you overcame them
+
+	-Svårt att hitta en balans i hur litet man skulle börja och fokusera, jag startade att fokusera enbart på ett valideringstest vilket kändes delvis bra. Jag hade bra fokus på hur valideringen skulle fungera men lite förvirrad hur det skulle funka i det stora hela. Till slut hittade jag en bra balans av att göra barebone-metoder av hela flödet och slutligen lägga till logik allt-eftersom.
+
+	-Svårt att veta om testningen också skulle validera med egen logik att resultaten blivit korrekta eller om den ska testa att själva validerings-metoderna fungerar som tänkt, insåg sen att inmatningen i testerna faktiskt kontrollerar valideringen, så man har full kontroll.
+
+	-Svårt att särskilja på om valideringen också skulle testas i create user metoden, t.ex om man skrivit in fel mail. Jag valde att testa även de för att se att att exceptions-meddelanden nådde upp i hierarkin och meddelandet kunde tas emot även i create user.
+
+
+
+• What you learned from using TDD for this project
+
+	-TDD tillämpar ett bra fokus och flöde om man vant sig att tänka ur det perspektivet. Att lösa problem stegvis och strategiskt istället för att tänka ut hela lösningen innan man börjar skriva koden.
+
+
+• Any considerations or assumptions made during development
+
+	-Jag valde att inte bygga ur ett realistiskt perspektiv med privata variablar etc, jag ville fokusera på själva testningen och gjorde allt publikt.
+
+	-Jag la även till en character limitering på lösenord (max 20 characters) som inte fanns i kraven.
+
+	-I överlag visste jag inte hur felhanteringen skulle skötas, om koden skulle kasta eller returnera meddelanden etc, så jag hittade en egen struktur.

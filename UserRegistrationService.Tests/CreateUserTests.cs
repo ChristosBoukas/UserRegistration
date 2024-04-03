@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using System.ComponentModel;
 using System.Threading.Tasks;
 using System.Xml.Linq;
 using UserRegistrationService;
@@ -50,5 +52,20 @@ public class CreateUserTests
         Assert.AreEqual(originalUsername, service.Users[0].Username);
         Assert.AreEqual(originalPassword, service.Users[0].Password);
         Assert.AreEqual(originalEmail, service.Users[0].Email);
+    }
+
+    [TestMethod]
+    public void TryToAddUserWithInvalidInputForPasswordAndEmail_ShouldThrowException()
+    {
+        // Arrange
+        UserRegistrationService service = new UserRegistrationService();
+
+        // Act & Assert
+
+        // Assert exception is thrown when user inputs invalid password
+        Assert.ThrowsException<ArgumentException>(() => service.CreateUser("Username", "NewPassword", "NewEmail@gmail.com"), "Password must contain at least one special character");
+
+        // Assert exception is thrown when user inputs invalid email
+        Assert.ThrowsException<ArgumentException>(() => service.CreateUser("Username", "NewPassword!", "NewEmail.com"), "Invalid email format");
     }
 }
