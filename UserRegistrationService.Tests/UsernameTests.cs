@@ -10,27 +10,27 @@ public class UsernameTests
     {
         // Arrange variations of strings
         UserRegistrationService service = new UserRegistrationService();
-        string numericValuesExceedingCharLimit = "OnlyAlphaNumericChars0123456789";
-        string numericValuesConceedingCharLimit = "cl12";
-        string specialCharacters = "SpecialCharacters#!£€{";
-        string nullString = null;
-        string numericCharactersWithinRange = "Character12345";
+        string numericValuesExceedingCharLimit = "OnlyAlphaNumericChars0123456789"; // Invalid
+        string numericValuesConceedingCharLimit = "cl12";                           // Invalid
+        string specialCharacters = "SpecialCharacters#!£€{";                        // Invalid
+        string? nullString = null;                                                   // Invalid
+        string numericCharactersWithinRange = "Character12345";                     // Valid
 
         // Act and Assert
 
-        // Check if exception is thrown when string exceeding character limit
+        // Assert if exception is thrown when string exceeding character limit
         Assert.ThrowsException<ArgumentException>(() => service.ValidateUsername(numericValuesExceedingCharLimit), "Invalid number of characters");
 
-        // Check if exception is thrown when string concceeding character limit
+        // Assert if exception is thrown when string concceeding character limit
         Assert.ThrowsException<ArgumentException>(() => service.ValidateUsername(numericValuesConceedingCharLimit), "Invalid number of characters");
 
-        // Check if exception is thrown when string contains special characters
+        // Assert if exception is thrown when string contains special characters
         Assert.ThrowsException<ArgumentException>(() => service.ValidateUsername(specialCharacters), "Contains special characters");
 
-        // Check if exception is thrown when string is null
-        Assert.ThrowsException<ArgumentException>(() => service.ValidateUsername(null), "No input value");
+        // Assert if exception is thrown when string is null
+        Assert.ThrowsException<ArgumentException>(() => service.ValidateUsername(nullString), "No input value");
 
-        // Checks if method returns true if validation succeeds
+        // Assert if method returns true if validation succeeds
         Assert.IsTrue(service.ValidateUsername(numericCharactersWithinRange));
     }
 

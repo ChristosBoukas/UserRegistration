@@ -13,7 +13,7 @@ public class PasswordTests
         string passwordExceedingCharLimit = "InputExceedingLimit!@$£";  // Invalid
         string passwordConceedingCharLimit = "cl![";                    // Invalid
         string onlyNumericCharacters = "OnlyNumericCharacters";         // Invalid
-        string nullString = null;                                       // Invalid
+        string? nullString = null;                                       // Invalid
         string validPasswordWithinRange = "Character123![}";            // Valid
 
         // Act and Assert
@@ -28,7 +28,7 @@ public class PasswordTests
         Assert.ThrowsException<ArgumentException>(() => service.ValidatePassword(onlyNumericCharacters), "Password must contain at least one special character");
 
         // Assert if exception is thrown when string is null
-        Assert.ThrowsException<ArgumentException>(() => service.ValidatePassword(null), "No input value");
+        Assert.ThrowsException<ArgumentException>(() => service.ValidatePassword(nullString), "No input value");
 
         // Assert if method returns true on validation success
         Assert.IsTrue(service.ValidatePassword(validPasswordWithinRange));

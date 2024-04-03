@@ -31,7 +31,7 @@ public class UserRegistrationService
         // Define a regular expression pattern for alphanumeric characters only
         string pattern = "^[a-zA-Z0-9]+$";
 
-        // Check if the inputValue length is within the valid range
+        // Check if the inputValue length is not null
         if (inputValue is null)
         {
             throw new ArgumentException("No input value");
@@ -70,7 +70,7 @@ public class UserRegistrationService
         // Define a regular expression pattern for special characters
         string specialCharacterPattern = "[^a-zA-Z0-9]";
 
-        // Check if the inputValue length is within the valid range
+        // Check if the inputValue length is not null
         if (inputValue is null)
         {
             throw new ArgumentException("No input value");
@@ -98,8 +98,24 @@ public class UserRegistrationService
         return true;
     }
 
-    public bool ValidateEmail(string email)
+    public bool ValidateEmail(string inputValue)
     {
+        // Check if the inputValue length is not null
+        if (inputValue is null)
+        {
+            throw new ArgumentException("No input value");
+        }
+
+        // Define a regular expression pattern for email format
+        string emailPattern = @"^[^\s@]+@[^\s@]+\.[^\s@]+$";
+
+        // Check if the inputValue matches the email pattern
+        if (!Regex.IsMatch(inputValue, emailPattern))
+        {
+            throw new ArgumentException("Invalid email format");
+        }
+
+        // Email is valid
         return true;
     }
 }
