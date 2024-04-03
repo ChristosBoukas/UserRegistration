@@ -7,6 +7,13 @@ public class UserRegistrationService
 {
     public List<User> Users { get; set; } = [];
 
+    /// <summary>
+	/// Validates parameters, upon verification creates a new user and adds it to users list.
+	/// </summary>
+	/// <param name="username"></param>
+	/// <param name="password"></param>
+	/// <param name="email"></param>
+    /// <returns>A message string on success, throws exception on fail</returns>
     public string CreateUser(string username, string password, string email)
     {
         ValidateUsername(username);
@@ -26,6 +33,11 @@ public class UserRegistrationService
         return $"User {username} added successfully";
     }
 
+    /// <summary>
+    /// Validates the input value is in correct format (e.g only alphanumerical characters between 5-20 long).
+    /// </summary>
+    /// <param name="inputValue"></param>
+    ///<returns>Bool (True) on success, throws exception on fail</returns>
     public bool ValidateUsername(string inputValue)
     {
         // Define a regular expression pattern for alphanumeric characters only
@@ -53,9 +65,14 @@ public class UserRegistrationService
         return true;
     }
 
-    public bool ValidateUniqueUsername(string username)
+    /// <summary>
+    /// Validates the input value is a unique username compared to Username properti in Users list objects. Comparison is case-insensitive.
+    /// </summary>
+    /// <param name="inputValue"></param>
+    ///<returns>Bool (True) on success, throws exception on fail</returns>
+    public bool ValidateUniqueUsername(string inputValue)
     {
-        User? uniqueUser = Users.FirstOrDefault(u => u.Username.Equals(username, StringComparison.OrdinalIgnoreCase));
+        User? uniqueUser = Users.FirstOrDefault(u => u.Username.Equals(inputValue, StringComparison.OrdinalIgnoreCase));
         if (uniqueUser is not null)
         { 
             throw new ArgumentException("Username is not unique.");
@@ -63,6 +80,11 @@ public class UserRegistrationService
         return true;
     }
 
+    /// <summary>
+    /// Validates the input value is in correct format (e.g contains at least one special character and is between 8-20 long).
+    /// </summary>
+    /// <param name="inputValue"></param>
+    ///<returns>Bool (True) on success, throws exception on fail</returns>
     public bool ValidatePassword(string inputValue)
     {
         // Define a regular expression pattern for alphanumeric characters
@@ -98,6 +120,11 @@ public class UserRegistrationService
         return true;
     }
 
+    /// <summary>
+    /// Validates the input value is in correct email format (e.g user@example.com).
+    /// </summary>
+    /// <param name="inputValue"></param>
+    ///<returns>Bool (True) on success, throws exception on fail</returns>
     public bool ValidateEmail(string inputValue)
     {
         // Check if the inputValue length is not null
